@@ -1,6 +1,7 @@
 // Dependencies
 var express = require("express");
 var path = require("path");
+var fs = require("fs");
 
 
 const app = express();
@@ -20,6 +21,10 @@ app.get("/", (req, res) => {
 app.get("/notes", (req, res) => {
   res.sendFile(path.join(__dirname, "notes.html"));
 });
+
+var db = fs.readFile("./db/db.json", (err, data) => {
+  db = JSON.parse(data);
+}); 
 
 // API Routes
 app.get("/api/notes", (req, res) => {
